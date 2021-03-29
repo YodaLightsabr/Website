@@ -20,14 +20,17 @@ app.get('/', (req, res) => {
     }
   });
 });
+
 app.get('/messages', async (req, res) => {
   var data = await db.get('responses');
   res.send(JSON.stringify(data));
 });
+
 app.get('/messages/clear', async (req, res) => {
   await db.set('responses', []);
   res.send(JSON.stringify([]));
 });
+
 app.post('/', async (req, res) => {
   await db.push('responses', {
     name: req.body.name,
@@ -42,6 +45,7 @@ app.post('/', async (req, res) => {
     }
   });
 });
+
 app.listen(8080, () => {
   console.log('Listening on *:8080');
 });
