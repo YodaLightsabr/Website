@@ -21,6 +21,10 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/d/*', (req, res) => {
+  res.redirect('https://webdevintro.yodacode.repl.co/samples/'  + req.path.substring(3));
+});
+
 app.get('/messages', async (req, res) => {
   var data = await db.get('responses');
   res.send(JSON.stringify(data));
